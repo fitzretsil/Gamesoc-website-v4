@@ -46,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 			<ul class="menu">
 	            <li class="page_item"><?php echo $this->Html->link('Home', '/' ); ?></li>
 	            <li class="page_item page-item-2"><?php echo $this->Html->link('About', array('controller' => 'pages', 'action' => 'display', 'about' ) ); ?></li>
+	            <li class="page_item page_item-3"><?php echo $this->Html->link('How to LAN', array('controller' => 'pages', 'action' => 'display', 'lan' ) ); ?></li>
 	            <!-- <li class="page_item page-item-46"><a href="http://wp-themes.com/?page_id=46">Events</a>
 	                <ul class='children'>
 	                    <li class="page_item page-item-49"><a href="http://wp-themes.com/?page_id=49">Pub Nights</a></li>
@@ -72,22 +73,22 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	                <div class="widget-title-home"><h3>Want to know more?</h3></div>
 	                <div class="textwidget">
 	                	You can also find GameSoc on the following sites:
-	                	<table border="0">
+	                	<table>
 	                		<tr>
 	                			<td width="30px"><?php echo $this->Html->image( 'gamesoc/f_logo.png', array( 'width' => '30px' ) ); ?></td>
-	                			<td><?php echo $this->Html->link( 'Facebook', 'http://www.facebook.com/Edinburgh.Gamesoc' ); ?></td>
+	                			<td><?php echo $this->Html->link( 'Facebook', 'http://www.facebook.com/Edinburgh.Gamesoc', array( 'target' => '_blank' ) ); ?></td>
 	                		</tr>
 	                		<tr>
 	                			<td width="30px"><?php echo $this->Html->image( 'gamesoc/yt-logo.png', array( 'width' => '30px' ) ); ?></td>
-	                			<td><?php echo $this->Html->link( 'YouTube', 'http://www.youtube.com/eugamesoc' ); ?></td>
+	                			<td><?php echo $this->Html->link( 'YouTube', 'http://www.youtube.com/eugamesoc', array( 'target' => '_blank' ) ); ?></td>
 	                		</tr>
 	                		<tr>
 	                			<td width="30px"><?php echo $this->Html->image( 'gamesoc/steam-logo.jpg', array( 'width' => '30px' ) ); ?></td>
-	                			<td><?php echo $this->Html->link( 'Steam', 'http://steamcommunity.com/groups/eugamesoc' ); ?></td>
+	                			<td><?php echo $this->Html->link( 'Steam', 'http://steamcommunity.com/groups/eugamesoc', array( 'target' => '_blank' ) ); ?></td>
 	                		</tr>
 	                		<tr>
 	                			<td width="30px"><?php echo $this->Html->image( 'gamesoc/twitter-logo.png', array( 'width' => '30px' ) ); ?></td>
-	                			<td><?php echo $this->Html->link( 'Twitter', 'http://twitter.com/Gamesoc' ); ?></td>
+	                			<td><?php echo $this->Html->link( 'Twitter', 'http://twitter.com/Gamesoc', array( 'target' => '_blank' ) ); ?></td>
 	                		</tr>
 	                	</table>
 	                </div>
