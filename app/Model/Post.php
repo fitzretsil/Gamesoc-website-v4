@@ -1,35 +1,38 @@
 <?php
 /**
- * Application model for Cake.
+ * News Post Model
  *
- * This file is application-wide model file. You can put all
- * application-wide model-related methods here.
+ * This file is News Posts Model file. All data-centric methods relating to news posts
+ * should be in here.
  *
  * PHP 5
  *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2013, Edinburgh University Computer Gaming Society. (http://gamesoc.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @copyright     Copyright 2005-2013, Edinburgh University Computer Gaming Society (http://gamesoc.org)
+ * @link          http://gamesoc.org Edinburgh University Computer Gaming Society
  * @package       app.Model
- * @since         CakePHP(tm) v 0.2.9
+ * @since         GameSoc v4.0.0
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
- * Application model for Cake.
+ * News Post Model
  *
- * Add your application-wide methods in the class below, your models
- * will inherit them.
+ * All data-centric methods relating to news posts should be in here.
  *
  * @package       app.Model
  */
 class Post extends AppModel {
-	
+
+	/**
+	 * Validation Rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 			'title' => array(
 					'rule' => 'notEmpty'
@@ -38,10 +41,23 @@ class Post extends AppModel {
 					'rule' => 'notEmpty'
 			)
 	);
-	
+
+	/**
+	 * Define the parent relationships of this Model
+	 *
+	 * @var array
+	 */
 	public $belongsTo = 'User';
-	
-	public function isOwnedBy($post, $user) {
-		return $this->field('id', array('id' => $post, 'user_id' => $user)) === $post;
+
+	/**
+	 * Returns true if the specified User created the specified Post
+	 *
+	 * @param string $post The Post's UID
+	 * @param string $user The User's UID
+	 * @return boolean
+	 */
+	public function isOwnedBy( $post, $user ) {
+		return $this->field( 'id', array( 'id' => $post, 'user_id' => $user ) ) === $post;
 	}
 }
+?>

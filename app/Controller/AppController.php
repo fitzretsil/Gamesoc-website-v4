@@ -32,29 +32,41 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	
+
+	/**
+	 * @var Components used by all controllers
+	 */
 	public $components = array(
 			'Session',
 			'Auth' => array(
-					'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
-					'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
-					'authorize' => array('Controller') // Added this line
+					'loginRedirect'  => array( 'controller' => 'posts', 'action' => 'index' ),
+					'logoutRedirect' => array( 'controller' => 'posts', 'action' => 'index' ),
+					'authorize'      => array( 'Controller' ),
 			)
 	);
-	
+
+	/* (non-PHPdoc)
+	 * @see Controller::beforeFilter()
+	 */
 	public function beforeFilter() {
-		$this->Auth->allow('index', 'view','display');
+		$this->Auth->allow( 'index', 'view','display' );
 		$this->set( 'admin', $this->Auth->user() );
 	}
-	
+
+	/**
+	 * This method returns true if a user can access the current page
+	 *
+	 * @param array $user The current user's information
+	 * @return boolean
+	 */
 	public function isAuthorized($user) {
 		// Admin can access every action
-		if (isset($user['role']) && $user['role'] === 'admin') {
+		if ( isset( $user['role'] ) && $user['role'] === 'admin' ) {
 			return true;
 		}
-	
+
 		// Default deny
 		return false;
 	}
-	
+
 }
