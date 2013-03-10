@@ -28,8 +28,8 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
 		echo $this->Html->css('gs.default');
+		echo $this->Html->meta( 'News', '/posts/index.rss', array('type' => 'rss') );
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -58,9 +58,9 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	           -->
 	        </ul>
 		</div>
-		
+
 		<?php echo $this->Session->flash(); ?>
-		
+
 		<div id="content" class="grid col-540">
 
 			<?php echo $this->fetch('content'); ?>
@@ -69,7 +69,7 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 		<div id="widgets" class="home-widgets">
 	        <div class="grid-right col-300">
 	        	<div class="widget-wrapper">
-	            
+
 	                <div class="widget-title-home"><h3>Want to know more?</h3></div>
 	                <div class="textwidget">
 	                	You can also find GameSoc on the following sites:
@@ -92,54 +92,54 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	                		</tr>
 	                	</table>
 	                </div>
-	            
+
 	            </div><!-- end of .widget-wrapper -->
-	            
+
 	        </div><!-- end of .col-300 -->
-	        
+
 	        <div class="grid-right col-300">
 	        	<div class="widget-wrapper">
-	            
+
 	                <div class="widget-title-home"><h3>Committee Login</h3></div>
 	                <div class="textwidget">
 	                	<?php if ($this->Session->read('Auth.User')){ ?>
-	                		You are currently viewing this site as <?php echo $this->Session->read('Auth.User.username'); ?>. 
+	                		You are currently viewing this site as <?php echo $this->Session->read('Auth.User.username'); ?>.
 	                		<?php echo $this->Html->link( 'Logout', array( 'controller' => 'users', 'action' => 'logout' ) ); ?>
 	                	<?php } else { ?>
-	                		You are currently viewing this site as a guest. 
+	                		You are currently viewing this site as a guest.
 	                		<?php echo $this->Html->link( 'Login?', array( 'controller' => 'users', 'action' => 'login' ) ); ?>
 	                	<?php } ?>
 	                </div>
-	            
+
 	            </div><!-- end of .widget-wrapper -->
-	            
+
 	        </div><!-- end of .col-300 -->
-	    </div><!-- end of #widgets -->    
+	    </div><!-- end of #widgets -->
 	 </div><!-- end of #wrapper -->
 </div><!-- end of #container -->
 
 		<div id="footer">
 			<div id="footer-wrapper">
 				<div class="grid col-940">
-        
+
 	        		<div class="grid col-540"></div><!-- end of col-540 -->
-	         
+
 	         		<div class="grid col-380 fit">
 	         			<ul class="social-icons"></ul><!-- end of .social-icons -->
 	         		</div><!-- end of col-380 fit -->
-         
+
         		 </div><!-- end of col-940 -->
-                             
+
         		<div class="grid col-300 copyright">
         			&copy; 2013 Edinburgh University Computer Gaming Society
         		</div><!-- end of .copyright -->
-        
+
         		<div class="grid col-300 scroll-top"><a href="#scroll-top" title="scroll to top">&uarr;</a></div>
-        
+
        			<div class="grid col-300 fit powered">
-            		Based on the 
-            		<a href="http://themeid.com/responsive-theme/" title="Responsive Theme">Responsive Theme</a> 
-            		and powered by 
+            		Based on the
+            		<a href="http://themeid.com/responsive-theme/" title="Responsive Theme">Responsive Theme</a>
+            		and powered by
             		<?php echo $this->Html->link(
 						$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
 						'http://www.cakephp.org/',
