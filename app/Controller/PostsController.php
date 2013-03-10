@@ -33,14 +33,14 @@ class PostsController extends AppController {
      *
      * @var array
      */
-    public $helpers = array( 'Html', 'Form', 'Session' );
+    public $helpers = array( 'Html', 'Form', 'Session', 'Text', 'Rss' );
 
     /**
      * Components used in this controller
      *
      * @var array
      */
-    public $components = array( 'Session' );
+    public $components = array( 'Session', 'RequestHandler' );
 
     /**
      * The configuration for the paginate method
@@ -58,13 +58,21 @@ class PostsController extends AppController {
      * Returns a paged list of items
      */
     public function index() {
-         $this->set( 'posts', $this->paginate() );
+    	if ( $this->RequestHandler->isRss() ) {
+    		$posts = $this->Post->find('all', array('limit' => 20, 'order' => 'Post.created DESC'));
+    		return $this->set(compact('posts'));
+    	}
+
+    	$this->log( "Index method called, using paginate to set the posts array" );
+        $this->set( 'posts', $this->paginate() );
     }
 
     /* (non-PHPdoc)
      * @see AppController::isAuthorized()
      */
     public function isAuthorized( $user ) {
+    	$this->log( "Checking if User $user is authorized to perform the $this->action action" );
+
     	// All registered users can add posts
     	if ( $this->action === 'add' ) {
     		return true;
@@ -88,6 +96,7 @@ class PostsController extends AppController {
      * @throws NotFoundException
      */
     public function view( $id = null ) {
+    	$this->log( "Attempting to view Post with ID $id" );
         if ( !$id ) {
             throw new NotFoundException( __( 'Invalid post' ) );
         }
@@ -104,12 +113,16 @@ class PostsController extends AppController {
      */
     public function add() {
     	if ( $this->request->is( 'post' ) ) {
+    		$this->log( "Adding a new Post: " . debug( $this->request ) );
     		$this->request->data['Post']['user_id'] = $this->Auth->user( 'id' );
+    		$this->log( "Setting User ID to " . $this->Auth->user( 'id' ) );
     		$this->Post->create();
     		if ( $this->Post->save( $this->request->data ) ) {
+    			$this->log( "Post saved succesfully" );
     			$this->Session->setFlash( 'Your post has been saved.' );
     			$this->redirect( array( 'action' => 'index' ) );
     		} else {
+    			$this->log( "Post could not be saved" );
     			$this->Session->setFlash( 'Unable to add your post.' );
     		}
     	}
@@ -122,6 +135,7 @@ class PostsController extends AppController {
      * @throws NotFoundException
      */
     public function edit( $id = null ) {
+    	$this->log( "Editing Post $id" );
     	if ( !$id ) {
     		throw new NotFoundException( __( 'Invalid post' ) );
     	}

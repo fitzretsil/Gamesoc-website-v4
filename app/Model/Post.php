@@ -57,6 +57,7 @@ class Post extends AppModel {
 	 * @return boolean
 	 */
 	public function isOwnedBy( $post, $user ) {
+		$this->log( "Checking is $post is owned by $user" );
 		return $this->field( 'id', array( 'id' => $post, 'user_id' => $user ) ) === $post;
 	}
 }

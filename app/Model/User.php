@@ -20,7 +20,6 @@
  */
 App::uses('AuthComponent', 'Controller/Component');
 
-
 /**
  * User Model
  *
@@ -69,6 +68,7 @@ class User extends AppModel {
      */
     public function beforeSave($options = array()) {
     	if ( isset( $this->data[$this->alias]['password'] ) ) {
+    		$this->log( "Password exists within the data array, value will be hashed before it is saved" );
     		$this->data[$this->alias]['password'] = AuthComponent::password( $this->data[$this->alias]['password'] );
     	}
     	return true;
