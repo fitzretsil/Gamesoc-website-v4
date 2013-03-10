@@ -106,6 +106,7 @@ class PostsController extends AppController {
             throw new NotFoundException( __( 'Invalid post' ) );
         }
         $this->set( 'post', $post );
+        $this->set( 'title_for_layout', $post['Post']['title'] );
     }
 
     /**
