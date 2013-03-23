@@ -96,5 +96,17 @@ class User extends AppModel {
     	}
     	return true;
     }
+
+    public function counts() {
+    	$members = $this->find( 'count' );
+    	$paidMembers = $this->find( 'count', array(
+    			'conditions' => array( 'OR' => array( 'paid' => 1, 'lifetime_member' => 1 ) )
+    	) );
+    	$lifetimeMembers = $this->find( 'count', array(
+    			'conditions' => array( 'lifetime_member' => 1 )
+    	) );
+
+    	return array( 'members' => $members, 'paid' => $paidMembers, 'lifetime' => $lifetimeMembers );
+    }
 }
 ?>

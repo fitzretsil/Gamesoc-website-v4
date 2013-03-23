@@ -1,6 +1,19 @@
 <div class="users index">
 	<h2><?php __('Users');?></h2>
 
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Total Members</th>
+			<th>Paid Members</th>
+			<th>Lifetime Members</th>
+		</tr>
+		<tr>
+			<td><?php echo $counts['members']; ?></td>
+			<td><?php echo $counts['paid']; ?></td>
+			<td><?php echo $counts['lifetime']; ?></td>
+		</tr>
+	</table>
+
 	<ul class="actions">
     	<li><?php echo $this->Html->link(__('Add New Member', true), array('action' => 'add')); ?></li>
     </ul>

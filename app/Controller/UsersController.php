@@ -63,6 +63,7 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set( 'users', $this->paginate() );
+		$this->set( 'counts', $this->User->counts() );
 	}
 
 	/**
@@ -118,6 +119,9 @@ class UsersController extends AppController {
 		}
 	}
 
+	/**
+	 * Allows a User to change their password
+	 */
 	public function password() {
 		$this->User->id = $this->Session->read('Auth.User.id');
 		if ( $this->request->is( 'post' ) || $this->request->is( 'put' ) ) {
