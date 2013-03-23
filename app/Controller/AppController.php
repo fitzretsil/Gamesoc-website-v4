@@ -42,6 +42,7 @@ class AppController extends Controller {
 					'loginRedirect'  => array( 'controller' => 'posts', 'action' => 'index' ),
 					'logoutRedirect' => array( 'controller' => 'posts', 'action' => 'index' ),
 					'authorize'      => array( 'Controller' ),
+					'loginError'	 => 'Permission Denied',
 			)
 	);
 
@@ -61,10 +62,11 @@ class AppController extends Controller {
 	 */
 	public function isAuthorized($user) {
 		// Admin can access every action
-		if ( isset( $user['role'] ) && $user['role'] === 'admin' ) {
+		if ( isset( $user['committee'] ) && $user['committee'] == 1 ) {
 			return true;
 		}
 
+		$this->Session->setFlash( __( 'You are not allowed to access this page' ) );
 		// Default deny
 		return false;
 	}

@@ -27,7 +27,9 @@
 		<td><?php echo $user['User']['full_name']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
 		<td><?php
-			if ( $user['User']['paid'] == 1) {
+			if ( $user['User']['lifetime_member'] ) {
+				echo "N/A";
+			}elseif ( $user['User']['paid'] == 1) {
 				echo $this->Html->image( 'tango/Green_tick.png', array('height'=>'16px', 'width'=>'16px'));
 			} else {
 				echo $this->Html->image( 'tango/x-mark-xl.png', array('height'=>'16px', 'width'=>'16px'));

@@ -33,7 +33,8 @@ class UsersController extends AppController {
 	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow( 'add' );
+		$this->Auth->deny( 'index' );
+		$this->Auth->allow( 'logout' );
 	}
 
 	/**
@@ -85,10 +86,10 @@ class UsersController extends AppController {
 		if ( $this->request->is( 'post' )) {
 			$this->User->create();
 			if ( $this->User->save( $this->request->data ) ) {
-				$this->Session->setFlash( __( 'The user has been saved' ) );
-				$this->redirect( array( 'action' => 'index' ) );
+				$this->Session->setFlash( __( 'You have succesfully registerd.' ) );
+				$this->redirect( '/' );
 			} else {
-				$this->Session->setFlash( __( 'The user could not be saved. Please, try again.' ) );
+				$this->Session->setFlash( __( 'You could not be registerd. Please, try again.' ) );
 			}
 		}
 	}
@@ -117,6 +118,21 @@ class UsersController extends AppController {
 		}
 	}
 
+	public function password() {
+		$this->User->id = $this->Session->read('Auth.User.id');
+		if ( $this->request->is( 'post' ) || $this->request->is( 'put' ) ) {
+			if ( $this->User->save( $this->request->data ) ) {
+				$this->Session->setFlash( __( 'The user has been saved' ) );
+				$this->redirect( '/' );
+			} else {
+				$this->Session->setFlash( __( 'The user could not be saved. Please, try again.' ) );
+			}
+		} else {
+			$this->request->data = $this->User->read( null, $this->Session->read('Auth.User.id') );
+			unset($this->request->data['User']['password']);
+		}
+	}
+
 	/**
 	 * Delete an item given it's ID
 	 *
@@ -124,9 +140,6 @@ class UsersController extends AppController {
 	 * @throws MethodNotAllowedException
 	 */
 	public function delete( $id = null ) {
-		if ( !$this->request->is( 'post' ) ) {
-			throw new MethodNotAllowedException();
-		}
 		$this->User->id = $id;
 		if ( !$this->User->exists() ) {
 			throw new NotFoundException( __( 'Invalid user' ) );

@@ -104,10 +104,18 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	                <div class="textwidget">
 	                	<?php if ($this->Session->read('Auth.User')){ ?>
 	                		You are currently viewing this site as <?php echo $this->Session->read('Auth.User.username'); ?>.
+	                		<?php echo $this->Html->link( 'Change Password', array( 'controller' => 'users', 'action' => 'password' ) ); ?>
+	                		&middot;
 	                		<?php echo $this->Html->link( 'Logout', array( 'controller' => 'users', 'action' => 'logout' ) ); ?>
 	                	<?php } else { ?>
 	                		You are currently viewing this site as a guest.
-	                		<?php echo $this->Html->link( 'Login?', array( 'controller' => 'users', 'action' => 'login' ) ); ?>
+	                		<?php echo $this->Html->link( 'Login', array( 'controller' => 'users', 'action' => 'login' ) ); ?>
+	                	<?php } ?>
+
+	                	<?php if ( $this->Session->read('Auth.User.committee') == 1 ) { ?>
+	                		<ul>
+	                			<li><?php echo $this->Html->link( 'View Members', array( 'controller' => 'users' ) ); ?></li>
+	                		</ul>
 	                	<?php } ?>
 	                </div>
 
