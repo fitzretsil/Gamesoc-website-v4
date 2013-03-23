@@ -33,6 +33,9 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	public $app_id = "236283639834605";
+	public $app_secret = "e95e090a2a4228926c19c32ebe0813c4";
+
 	/**
 	 * @var Components used by all controllers
 	 */

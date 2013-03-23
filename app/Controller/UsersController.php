@@ -50,6 +50,20 @@ class UsersController extends AppController {
 		}
 	}
 
+	public function fblogin() {
+		if( empty( $code ) ) {
+			$this->Session->write( 'state', md5( uniqid( rand(), TRUE) ) );
+			$dialog_url = "https://www.facebook.com/dialog/oauth?client_id="
+					. $this->app_id . "&redirect_uri=" . urlencode(Router::url( $this->here, true ))
+					. "&state=" . $this->Session->read( 'state' )
+					. "&scope=id,first_name,last_name,email";
+
+			$this->redirect( $dialog_url );
+		}
+
+		$code = $this->request->data["code"];
+	}
+
 	/**
 	 * Handles User Logout
 	 */
