@@ -63,6 +63,18 @@ class User extends AppModel {
      */
     public $hasMany = 'Post';
 
+    /**
+     * The list of virtual fields used by this model
+     *
+     * A Virtual field is one created from the data stored
+     * in the database table using SQL Commands
+     *
+     * @var array
+     */
+    public $virtualFields = array(
+    		'full_name' => 'CONCAT(User.first_name, " ", User.last_name)'
+    );
+
     /* (non-PHPdoc)
      * @see Model::beforeSave()
      */
