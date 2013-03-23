@@ -37,4 +37,9 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Let's have it basic on dialogs as well.
 	config.removeDialogTabs = 'link:advanced';
+
+	config.extraPlugins = 'oembed';
+
+	config.oembed_maxWidth = '560';
+	config.oembed_maxHeight = '315';
 };

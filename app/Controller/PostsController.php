@@ -114,9 +114,7 @@ class PostsController extends AppController {
      */
     public function add() {
     	if ( $this->request->is( 'post' ) ) {
-    		$this->log( "Adding a new Post: " . debug( $this->request ) );
     		$this->request->data['Post']['user_id'] = $this->Auth->user( 'id' );
-    		$this->log( "Setting User ID to " . $this->Auth->user( 'id' ) );
     		$this->Post->create();
     		if ( $this->Post->save( $this->request->data ) ) {
     			$this->log( "Post saved succesfully" );
