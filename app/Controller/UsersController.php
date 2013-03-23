@@ -121,11 +121,14 @@ class UsersController extends AppController {
 	public function password() {
 		$this->User->id = $this->Session->read('Auth.User.id');
 		if ( $this->request->is( 'post' ) || $this->request->is( 'put' ) ) {
-			if ( $this->User->save( $this->request->data ) ) {
-				$this->Session->setFlash( __( 'The user has been saved' ) );
-				$this->redirect( '/' );
-			} else {
-				$this->Session->setFlash( __( 'The user could not be saved. Please, try again.' ) );
+			if ( $this->request->data['User']['password'] === $this->request->data['User']['confirm_password'] ) {
+				if ( $this->User->save( $this->request->data ) ) {
+					$this->Session->setFlash( __( 'Password changed succesfully' ) );
+					$this->redirect( '/' );
+
+				} else {
+					$this->Session->setFlash( __( 'Password could not be changed. Please, try again.' ) );
+				}
 			}
 		} else {
 			$this->request->data = $this->User->read( null, $this->Session->read('Auth.User.id') );
