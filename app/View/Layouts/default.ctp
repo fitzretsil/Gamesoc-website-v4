@@ -47,8 +47,8 @@ $cakeDescription = __d('cake_dev', 'Edinburgh University GameSoc');
 	            <li class="page_item"><?php echo $this->Html->link('Home', '/' ); ?></li>
 	            <li class="page_item page-item-2"><?php echo $this->Html->link('About', array('controller' => 'pages', 'action' => 'display', 'about' ) ); ?></li>
 	            <li class="page_item page_item-3"><?php echo $this->Html->link('How to LAN', array('controller' => 'pages', 'action' => 'display', 'lan' ) ); ?></li>
-	            <!-- <li class="page_item page-item-46"><a href="http://wp-themes.com/?page_id=46">Events</a>
-	                <ul class='children'>
+	            <li class="page_item page-item-4"><?php echo $this->Html->link( 'Events', array( 'controller'=> 'events', 'action' => 'index' ) ); ?></li>
+	                <!-- <ul class='children'>
 	                    <li class="page_item page-item-49"><a href="http://wp-themes.com/?page_id=49">Pub Nights</a></li>
 	                    <li class="page_item page-item-49"><a href="http://wp-themes.com/?page_id=49">LANs</a></li>
 	                </ul>

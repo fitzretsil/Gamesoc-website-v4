@@ -376,6 +376,14 @@ input[type="password"] {
 	width: 100%;
 }
 
+div.datetime select {
+	width: auto;
+}
+
+div.datetime label {
+	display: block;
+}
+
 select {
 	height: auto;
 	width: 100%;
