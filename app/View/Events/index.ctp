@@ -3,7 +3,7 @@
 	<table cellpadding="0" cellspacing="0" border="0">
 	<?php foreach ($events as $event): ?>
 	<tr>
-		<td><?php echo ( $event['Event']['type'] == "LAN" ) ? $this->Html->image( 'gamesoc/gaming.png' ) : "&nbsp;"; ?></td>
+		<td><?php echo ( $event['Event']['type'] == "LAN" ) ? $this->Html->image( 'gamesoc/gaming.png' ) : $this->Html->image( 'gamesoc/social.png' ); ?></td>
 		<td><?php echo h($event['Event']['name']); ?> @ <?php echo h($event['Event']['location']); ?>&nbsp;</td>
 		<td><strong>Starts:</strong> <?php echo h( $this->Time->nice( $event['Event']['start'] ) ); ?>&nbsp;</td>
 		<td><strong>Ends:</strong> <?php echo h( $this->Time->nice( $event['Event']['end'] ) ); ?>&nbsp;</td>
