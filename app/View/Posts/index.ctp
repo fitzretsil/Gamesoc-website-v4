@@ -11,7 +11,7 @@
 
 <?php foreach ($posts as $post): ?>
 
-	<img src="http://www.gamesoc.org/img/gamesoclogo1.png" width="65px" style="vertical-align: top; float: left;" alt="">
+	<?php echo $this->Html->image( $post['User']['pic'], array( 'width' => '65px', 'height' => '65px', 'alt' => $post['User']['username'], 'class' => 'profile' ) ); ?>
 
 	<div class="news" id="1">
 		<?php if ( $admin ) { ?>

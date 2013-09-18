@@ -1306,6 +1306,11 @@ form div {
 	margin-top: 0px;
 }
 
+img.profile {
+	vertical-align: top; 
+	float: left;
+}
+
 /* =Templates (Landing Page)
 -------------------------------------------------------------- */
 .page-template-landing-page-php .menu, 

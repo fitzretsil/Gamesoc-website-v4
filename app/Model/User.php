@@ -83,7 +83,8 @@ class User extends AppModel {
      * @var array
      */
     public $virtualFields = array(
-    		'full_name' => 'CONCAT(User.first_name, " ", User.last_name)'
+    		'full_name' => 'CONCAT(User.first_name, " ", User.last_name)',
+    		'pic' => 'IFNULL(User.picture, "http://www.unwork.com/wp/_people/silhouette.png")'
     );
 
     /* (non-PHPdoc)
