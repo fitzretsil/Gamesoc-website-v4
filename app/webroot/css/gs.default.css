@@ -1304,9 +1304,18 @@ form div {
 
 .news h2 {
 	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 130%;
 }
 
-img.profile {
+.profile h5 {
+	margin-top: 5px;
+	font-size: 110%;
+	text-align: center;
+	width: 65px;
+}
+
+div.profile {
 	vertical-align: top; 
 	float: left;
 }

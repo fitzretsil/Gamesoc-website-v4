@@ -11,7 +11,10 @@
 
 <?php foreach ($posts as $post): ?>
 
-	<?php echo $this->Html->image( $post['User']['pic'], array( 'width' => '65px', 'height' => '65px', 'alt' => $post['User']['username'], 'class' => 'profile' ) ); ?>
+	<div class="profile">
+		<?php echo $this->Html->image( $post['User']['pic'], array( 'width' => '65px', 'height' => '65px', 'alt' => $post['User']['username'], 'class' => 'profile' ) ); ?>
+		<h5><?php echo $post['User']['username'];?></h5>
+	</div>
 
 	<div class="news" id="1">
 		<?php if ( $admin ) { ?>
@@ -30,9 +33,9 @@
 			<?php echo $post['Post']['body']; ?>
 		</div>
 
+		<p><small>Posted <?php echo $this->Time->format('F jS, Y h:i A', $post['Post']['created'] ); ?></small></p>
+		
 		<hr />
-
-		<p><small>Posted by <?php echo $post['User']['username'];?> on <?php echo $this->Time->format('F jS, Y h:i A', $post['Post']['created'] ); ?></small></p>
 
 	</div>
 
