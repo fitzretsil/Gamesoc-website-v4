@@ -4,7 +4,7 @@
 	<?php foreach ($events as $event): ?>
 	<tr>
 		<td><?php echo ( $event['Event']['type'] == "LAN" ) ? $this->Html->image( 'gamesoc/gaming.png' ) : $this->Html->image( 'gamesoc/social.png' ); ?></td>
-		<td><?php echo h($event['Event']['name']); ?> @ <?php echo h($event['Event']['location']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link( h($event['Event']['name']), array( 'action' => 'view', $event['Event']['id'] ) ); ?> @ <?php echo h($event['Event']['location']); ?>&nbsp;</td>
 		<td><strong>Starts:</strong> <?php echo h( $this->Time->nice( $event['Event']['start'] ) ); ?>&nbsp;</td>
 		<td><strong>Ends:</strong> <?php echo h( $this->Time->nice( $event['Event']['end'] ) ); ?>&nbsp;</td>
 	</tr>

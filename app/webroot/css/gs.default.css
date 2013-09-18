@@ -376,11 +376,11 @@ input[type="password"] {
 	width: 100%;
 }
 
-div.datetime select {
+div.datetime select, div.time select {
 	width: auto;
 }
 
-div.datetime label {
+div.datetime label, div.time label {
 	display: block;
 }
 
@@ -1045,7 +1045,7 @@ ol {
 }
 
 dt {
-	font-weight: 400;
+	font-weight: 800;
 }
 
 /* =Blockquote

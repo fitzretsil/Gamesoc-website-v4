@@ -122,4 +122,19 @@ class EventsController extends AppController {
 		$this->Event->recursive = 0;
 		$this->set('events', $this->paginate());
 	}
+	
+	/**
+	 * view method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
+	public function view($id = null) {
+		if (!$this->Event->exists($id)) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
+		$this->set('event', $this->Event->find('first', $options));
+	}
 }

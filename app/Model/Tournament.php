@@ -1,11 +1,13 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Event Model
+ * Tournament Model
  *
+ * @property Event $Event
  * @property User $User
+ * @property TournamentParticipant $TournamentParticipant
  */
-class Event extends AppModel {
+class Tournament extends AppModel {
 
 /**
  * Validation rules
@@ -23,29 +25,9 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'details' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'location' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'start' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			'time' => array(
+				'rule' => array('time'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -53,9 +35,9 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'end' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+		'event_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -63,7 +45,7 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'type' => array(
+		'game' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -93,6 +75,13 @@ class Event extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'Event' => array(
+			'className' => 'Event',
+			'foreignKey' => 'event_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -101,16 +90,16 @@ class Event extends AppModel {
 			'order' => ''
 		)
 	);
-	
+
 /**
  * hasMany associations
  *
  * @var array
  */
 	public $hasMany = array(
-		'Tournament' => array(
-			'className' => 'Tournament',
-			'foreignKey' => 'event_id',
+		'TournamentParticipant' => array(
+			'className' => 'TournamentParticipant',
+			'foreignKey' => 'tournament_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -122,4 +111,5 @@ class Event extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
 }
